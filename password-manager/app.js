@@ -3,22 +3,37 @@ console.log('starting password manager...');
 var storage = require('node-persist');
 storage.initSync();
 
-//storage.setItemSync('accounts', [{
-//	username: 'Glen',
-//	balance: 0
-//}]); 
+function createAccount(account) {
+	var accounts = storage.getItemSync('accounts');
+	if(typeof accounts === 'undefined') {
+		accounts = [];
+	}
+	accounts.push(account);
+	storage.setItemSync('accounts',accounts);
+	return account;
+}
 
-var accounts = storage.getItemSync('accounts');
+function getAccount(accountName) {
+	var accounts = storage.getItemSync('accounts');
+	for(var i = 0; i < accounts.length;i++){
+		if(accounts[i].name === accountName) {
+			return accounts[i];
+		}
+	}
+}
 
-//accounts.push({
-//	username: 'Calix',
-//	balance: 0
+//createAccount({
+//	name: 'Udemy',
+//	username: 'glen',
+//	password: 'password'
 //});
-//
-//
-//storage.setItemSync('accounts', accounts);
+var existingAccount = getAccount('Udemy');
+console.log(existingAccount);
 
-
-
-
-console.log(accounts);
+//createAccount({
+//	name: 'Udacity',
+//	username: 'glen7',
+//	password: 'password123'
+//});
+var existingAccount = getAccount('Udacity');
+console.log(existingAccount);
