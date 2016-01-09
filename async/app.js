@@ -14,17 +14,18 @@ var argv = require('yargs')
 	.argv;
 
 if(typeof argv.l === 'string' && argv.l.length > 0) {
-	weather(argv.l, function(currentWeather){
-	console.log(currentWeather);
-	});
+	weather(argv.l).then(function(currentWeather) {
+        console.log(currentWeather);
+    }).catch(function(error) {
+        console.log('Error: ' + error);
+    });
 } else {
-	location(function(location) {
-		if(location) {
-				weather(location.city, function(currentWeather){
-				console.log(currentWeather);
-		});
-		} else {
-			console.log('Unable to guess location');
-		}
-	});
+    console.log('Location was not provided..attempting to guess via IP');
+    location().then(function(loc) {
+        return weather(loc.city);
+    }).then(function (currentWeather) {
+        console.log(currentWeather);
+    }).catch(function (error) {
+        console.log(error);
+    });
 }
