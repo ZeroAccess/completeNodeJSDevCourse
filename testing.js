@@ -1,46 +1,43 @@
-//Setup
-var contacts = [
-    {
-        "firstName": "Akira",
-        "lastName": "Laine",
-        "number": "0543236543",
-        "likes": ["Pizza", "Coding", "Brownie Points"]
-    },
-    {
-        "firstName": "Harry",
-        "lastName": "Potter",
-        "number": "0994372684",
-        "likes": ["Hogwarts", "Magic", "Hagrid"]
-    },
-    {
-        "firstName": "Sherlock",
-        "lastName": "Holmes",
-        "number": "0487345643",
-        "likes": ["Intruiging Cases", "Violin"]
-    },
-    {
-        "firstName": "Kristian",
-        "lastName": "Vos",
-        "number": "unknown",
-        "likes": ["Javascript", "Gaming", "Foxes"]
-    },
-];
+function convert(celsius) {
+    // Only change code below this line
+
+    var fahrenheit = (celsius * 9/5) + 32;
 
 
-function lookUp(firstName, prop) {
-    i = 0;
-    while (i < contacts.length) {
-        if (firstName !== contacts[i].firstName) {
-            console.log('1');
-            return 'No such contact';
-        } else if (firstName === contacts[i].firstName && contacts[i].hasOwnProperty(prop) === false) {
-            console.log('2');
-            return 'No such property';
-        } else {
-            console.log('3');
-            return contacts[i].prop;
-        }
-        i++;
+    // Only change code above this line
+    if ( typeof fahrenheit !== 'undefined' ) {
+        return fahrenheit;
+    } else {
+        return 'fahrenheit not defined';
     }
 }
-lookUp("Akira", "likes");
+
+// Change the inputs below to test your code
+convert(30);
+
+
+function golfScore(par, strokes) {
+    //Only change code below this line
+
+
+    if(strokes === 1) {
+        return 'Hole-in-one!';
+    } else if(strokes <= par - 2){
+        return 'Eagle';
+    } else if(strokes == par - 1) {
+        return 'Birdie';
+    } else if(strokes == par) {
+        return 'Par';
+    } else if(strokes == par + 1) {
+        return 'Bogey';
+    } else if(strokes == par + 2) {
+        return 'Double Bogey';
+    } else if(strokes >= par + 3) {
+        return 'Go Home!';
+    }
+
+    // Only change code above this line
+}
+
+// Change these values to test
+golfScore(5, 4);
